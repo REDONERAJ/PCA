@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCA Transformation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            background: #fff;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.1em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f1f8ff;
+            border: 1px solid #cce5ff;
+            border-radius: 6px;
+        }
+        .results h2 {
+            margin-top: 0;
+            color: #004085;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8d7da;
+            color: #721c24;
+            border-radius: 6px;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PCA Data Transformation</h1>
+        <form action="/transform" method="post">
+            <label for="data_input">Enter comma-separated numbers (e.g., 1,2,3):</label>
+            <input type="text" id="data_input" name="data_input" placeholder="Example: 1, 2, 3" required>
+            <input type="submit" value="Transform">
+        </form>
+
+        {% if original_data %}
+        <div class="results">
+            <h2>Results:</h2>
+            <p><strong>Original Data:</strong> {{ original_data }}</p>
+            <p><strong>Transformed Data (Principal Components):</strong> {{ transformed_data }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            Error: {{ error }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
